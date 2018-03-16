@@ -1,0 +1,14 @@
+.parallax-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 10px 8px;
+    -fx-font-size: 14px;
+}
+
+.parallax-list-view .list-cell:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+.parallax-list-view .list-view {
+    -fx-background-color: transparent;
+}
