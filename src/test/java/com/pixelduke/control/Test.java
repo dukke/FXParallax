@@ -3,11 +3,11 @@ package com.pixelduke.control;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.scenicview.ScenicView;
 
 public class Test extends Application {
 
