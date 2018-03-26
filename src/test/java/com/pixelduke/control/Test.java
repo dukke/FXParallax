@@ -41,7 +41,7 @@ public class Test extends Application {
     public void start(Stage primaryStage) {
         BorderPane rootNode = new BorderPane();
 
-        ParallaxListView parallaxListView = new ParallaxListView(FXCollections.observableArrayList("Portugal", "Spain", "United States",
+        ParallaxListView parallaxListView = new ParallaxListView<>(FXCollections.observableArrayList("Portugal", "Spain", "United States",
                 "Israel", "South Africa", "New Zealand", "Turkey", "Denmark", "Sweden", "Angola", "Canada", "Argentina",
                 "Brazil", "Uruguai", "South Korea", "England", "Ireland", "Scotland", "Wales", "Australia", "Peru", "Palestine", "Portugal", "Spain", "United States",
                 "Israel", "South Africa", "New Zealand", "Turkey", "Denmark", "Sweden", "Angola", "Canada", "Argentina",
