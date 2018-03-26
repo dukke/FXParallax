@@ -33,12 +33,9 @@ import javafx.animation.*;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
@@ -52,11 +49,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     private VirtualFlow listViewFlow;
     private ScrollBar listViewScrollBar;
 
-    private int isAlreadyScroolling;
-
-    private Rectangle rect = new Rectangle();
-
-    private final int CELL_HEIGHT = 40;
+    private int isAlreadyScrolling;
 
     /**
      * Constructor for all SkinBase instances.
@@ -67,26 +60,16 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
         super(control);
 
         backgroundScrollPane.setPannable(false);
-
         ImageView backgroundNode = control.getBackgroundNode();
-        rect.setFill(Color.BLACK);
-        rect.widthProperty().bind(backgroundNode.fitWidthProperty());
-        rect.heightProperty().bind(backgroundNode.fitHeightProperty());
-        rect.setOpacity(0.5);
-        Group group = new Group();
-        group.getChildren().addAll(backgroundNode, rect);
+        backgroundScrollPane.setContent(backgroundNode);
 
-        backgroundScrollPane.setContent(group);
         control.backgroundNodeProperty().addListener(observable -> backgroundScrollPane.setContent(control.getBackgroundNode()));
 
-//        updateBackgroundSize();
         updateListViewVirtualFlow();
         updateListViewScrollListeners();
 
         listView.itemsProperty().bind(control.itemsProperty());
         listView.heightProperty().addListener(observable -> updateBackgroundSize());
-//        backgroundNode.fitWidthProperty().bind(listView.widthProperty());
-
         getChildren().addAll(backgroundScrollPane, listView);
     }
 
@@ -125,9 +108,8 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
         listView.addEventFilter(ScrollEvent.ANY, listViewScrollListener);
     }
 
-    static double inc = 0;
     private final EventHandler<ScrollEvent> listViewScrollListener = event -> {
-        ++isAlreadyScroolling;
+        ++isAlreadyScrolling;
         double eventScroll = event.getDeltaY();
         double scrollValue = - Math.signum(eventScroll) * DEFAULT_SCROLL_AMOUNT;
 
@@ -161,7 +143,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
             listViewTransition.setInterpolator(Interpolator.EASE_OUT);
 
             ParallelTransition parallelTransition = new ParallelTransition(timeline, listViewTransition);
-            parallelTransition.setOnFinished(onFinishedEvent -> --isAlreadyScroolling);
+            parallelTransition.setOnFinished(onFinishedEvent -> --isAlreadyScrolling);
             parallelTransition.play();
         }
 
@@ -175,6 +157,8 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
             cellHeight = fixedCellSize;
 
         } else {
+            // We will calculate the cell height to be the height of the first cell.
+            // Afterwards we will assume all cells to be that same height.
             ListCell cell = (ListCell) listView.lookup(".list-cell");
             cellHeight = cell.getHeight();
         }
@@ -189,10 +173,8 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     }
 
     private void updateBackgroundSize() {
-//        BooleanBinding listViewShowing = Bindings.selectBoolean(listView.sceneProperty(), "window", "showing");
         if (listView.getSkin() != null) {
             ImageView backgroundNode = getSkinnable().getBackgroundNode();
-//            double listItemsHeight = calculateListItemsHeight();
             backgroundNode.setPreserveRatio(true); // TODO: Maybe we shoulsdn't be changing this property
             backgroundNode.setFitHeight(listView.getHeight() + VERTICAL_DIFFERENCE);
             if (backgroundNode.getBoundsInParent().getWidth() < listView.getWidth()) {
@@ -201,19 +183,6 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
             }
 
         }
-//        else {
-//            listView.skinProperty().addListener(new InvalidationListener() {
-//                @Override
-//                public void invalidated(Observable observable) {
-//                    ImageView backgroundNode = getSkinnable().getBackgroundNode();
-////                    double listItemsHeight = calculateListItemsHeight();
-//                    backgroundNode.setPreserveRatio(true); // TODO: Maybe we shoulsdn't be changing this property
-//                    backgroundNode.setFitHeight(listView.getHeight() + VERTICAL_DIFFERENCE);
-//                    listView.skinProperty().removeListener(this);
-//                }
-//            });
-//        }
-
     }
 
     @Override
