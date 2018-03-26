@@ -48,28 +48,29 @@ public class ParallaxListView<T> extends Control {
     }
 
 
-    final ObjectProperty<ObservableList<T>> items = new SimpleObjectProperty<>(this, "items");
-    public ObservableList<T> getItems() {
+    private final ObjectProperty<ObservableList<T>> items = new SimpleObjectProperty<>(this, "items");
+    public final ObservableList<T> getItems() {
         return items.get();
     }
-    public void setItems(ObservableList<T> items) {
+    public final void setItems(ObservableList<T> items) {
         this.items.set(items);
     }
-    public ObjectProperty<ObservableList<T>> itemsProperty() {
+    public final ObjectProperty<ObservableList<T>> itemsProperty() {
         return items;
     }
 
 
-    public ObjectProperty<ImageView> backgroundImageProperty() {
+    private final ObjectProperty<ImageView> backgroundImage = new SimpleObjectProperty<>();
+    public final ObjectProperty<ImageView> backgroundImageProperty() {
         return backgroundImage;
     }
-    public void setBackgroundImage(ImageView backgroundNode) {
+    public final void setBackgroundImage(ImageView backgroundNode) {
         this.backgroundImage.set(backgroundNode);
     }
-    public ImageView getBackgroundImage() {
+    public final ImageView getBackgroundImage() {
         return this.backgroundImage.get();
     }
-    private ObjectProperty<ImageView> backgroundImage = new SimpleObjectProperty<>();
+
 
 
     @Override
