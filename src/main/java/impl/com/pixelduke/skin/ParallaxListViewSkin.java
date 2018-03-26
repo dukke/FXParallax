@@ -19,7 +19,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     private final ListView<T> listView = new ListView<>();
 
     private final int VERTICAL_DIFFERENCE = 200;
-    private final int DEFAULT_SCROLL_AMOUNT = 200;
+    private final int DEFAULT_SCROLL_AMOUNT = 150;
     private final Duration ANIMATION_DURATION = Duration.millis(200);
 
     private VirtualFlow listViewFlow;
@@ -36,7 +36,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
      *
      * @param control The control for which this Skin should attach to.
      */
-    public ParallaxListViewSkin(ParallaxListView control) {
+    public ParallaxListViewSkin(ParallaxListView<T> control) {
         super(control);
 
         backgroundScrollPane.setPannable(false);
