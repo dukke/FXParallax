@@ -34,7 +34,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import org.scenicview.ScenicView;
 
 public class Test extends Application {
 
@@ -50,7 +49,7 @@ public class Test extends Application {
                 "Israel", "South Africa", "New Zealand", "Turkey", "Denmark", "Sweden", "Angola", "Canada", "Argentina",
                 "Brazil", "Uruguai", "South Korea", "England"));
         ImageView image = new ImageView(new Image(Test.class.getResource("bay-landscape-wallpaper-725x483.jpg").toExternalForm()));
-        parallaxListView.setBackgroundNode(image);
+        parallaxListView.setBackgroundImage(image);
 
         parallaxListView.setPrefWidth(993);
 

@@ -60,10 +60,10 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
         super(control);
 
         backgroundScrollPane.setPannable(false);
-        ImageView backgroundNode = control.getBackgroundNode();
+        ImageView backgroundNode = control.getBackgroundImage();
         backgroundScrollPane.setContent(backgroundNode);
 
-        control.backgroundNodeProperty().addListener(observable -> backgroundScrollPane.setContent(control.getBackgroundNode()));
+        control.backgroundImageProperty().addListener(observable -> backgroundScrollPane.setContent(control.getBackgroundImage()));
 
         updateListViewVirtualFlow();
         updateListViewScrollListeners();
@@ -87,7 +87,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
                     @Override
                     public void invalidated(Observable observable) {
 //                        if (isAlreadyScroolling == 0) {
-//                            ImageView backgroundNode = getSkinnable().getBackgroundNode();
+//                            ImageView backgroundNode = getSkinnable().getBackgroundImage();
 //
 //                            double listViewScrollAmount = listViewScrollBar.getValue();
 //                            double listViewScrollPercentage = listViewScrollAmount / listViewScrollBar.getMax();
@@ -174,7 +174,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
 
     private void updateBackgroundSize() {
         if (listView.getSkin() != null) {
-            ImageView backgroundNode = getSkinnable().getBackgroundNode();
+            ImageView backgroundNode = getSkinnable().getBackgroundImage();
             backgroundNode.setPreserveRatio(true); // TODO: Maybe we shoulsdn't be changing this property
             backgroundNode.setFitHeight(listView.getHeight() + VERTICAL_DIFFERENCE);
             if (backgroundNode.getBoundsInParent().getWidth() < listView.getWidth()) {

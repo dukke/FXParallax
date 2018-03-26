@@ -60,16 +60,16 @@ public class ParallaxListView<T> extends Control {
     }
 
 
-    public ObjectProperty<ImageView> backgroundNodeProperty() {
-        return backgroundNode;
+    public ObjectProperty<ImageView> backgroundImageProperty() {
+        return backgroundImage;
     }
-    public void setBackgroundNode(ImageView backgroundNode) {
-        this.backgroundNode.set(backgroundNode);
+    public void setBackgroundImage(ImageView backgroundNode) {
+        this.backgroundImage.set(backgroundNode);
     }
-    public ImageView getBackgroundNode() {
-        return this.backgroundNode.get();
+    public ImageView getBackgroundImage() {
+        return this.backgroundImage.get();
     }
-    private ObjectProperty<ImageView> backgroundNode = new SimpleObjectProperty<>();
+    private ObjectProperty<ImageView> backgroundImage = new SimpleObjectProperty<>();
 
 
     @Override
