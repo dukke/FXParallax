@@ -10,5 +10,5 @@
 }
 
 .parallax-list-view .list-view {
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(0, 0, 0, 0.3);
 }
