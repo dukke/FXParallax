@@ -174,15 +174,29 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
 
     private void updateBackgroundSize() {
         if (listView.getSkin() != null) {
-            ImageView backgroundNode = getSkinnable().getBackgroundImage();
-            backgroundNode.setPreserveRatio(true); // TODO: Maybe we shoulsdn't be changing this property
-            backgroundNode.setFitHeight(listView.getHeight() + VERTICAL_DIFFERENCE);
-            if (backgroundNode.getBoundsInParent().getWidth() < listView.getWidth()) {
-                backgroundNode.setFitWidth(listView.getWidth());
-                backgroundNode.setFitHeight(0);
-            }
-
+            ImageView backgroundImage = getSkinnable().getBackgroundImage();
+            changeImageHeight(backgroundImage, listView.getWidth(), listView.getHeight() + VERTICAL_DIFFERENCE);
         }
+    }
+
+    // Utility method to change an ImageView size by filling the bounding box with width = targetWidth and height = targetHeight
+    // the image ratio will be preserved.
+    private static void changeImageHeight(ImageView imageView, double targetWidth, double targetHeight) {
+        double imageHeight = imageView.getBoundsInLocal().getHeight();
+        double imageWidth = imageView.getBoundsInLocal().getWidth();
+        double newHeightPercentage = targetHeight / imageHeight;
+        double newWidthPercentage = targetWidth / imageWidth;
+
+        double newSizePercentage;
+        if (newWidthPercentage < newHeightPercentage) {
+            // We can change the width by newHeightPercentage and reach the targetWidth
+            newSizePercentage = newHeightPercentage;
+        } else {
+            // We can change the height by NewWidthPercentage and reach the targetHeight
+            newSizePercentage = newWidthPercentage;
+        }
+        imageView.setFitHeight(imageHeight * newSizePercentage);
+        imageView.setFitWidth(imageWidth * newSizePercentage);
     }
 
     @Override
