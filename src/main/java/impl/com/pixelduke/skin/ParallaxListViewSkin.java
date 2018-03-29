@@ -48,8 +48,6 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     private VirtualFlow listViewFlow;
     private ScrollBar listViewScrollBar;
 
-    private int isAlreadyScrolling;
-
     /**
      * Constructor for all SkinBase instances.
      *
@@ -82,20 +80,12 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
                 listViewScrollBar = (ScrollBar) listView.lookup(".scroll-bar");
 
                 // Setup ScrollBar listeners
-                listViewScrollBar.valueProperty().addListener(new InvalidationListener() {
-                    @Override
-                    public void invalidated(Observable observable) {
-//                        if (isAlreadyScroolling == 0) {
-//                            ImageView backgroundNode = getSkinnable().getBackgroundImage();
-//
-//                            double listViewScrollAmount = listViewScrollBar.getValue();
-//                            double listViewScrollPercentage = listViewScrollAmount / listViewScrollBar.getMax();
-//                            double backgroundNewPosition = calculateListItemsHeight() * listViewScrollPercentage;
-//
-//                            double backgroundScrollPaneAmount = backgroundScrollPane.getVmax() - backgroundScrollPane.getVmin();
-//                            backgroundScrollPane.setVvalue(backgroundScrollPane.getVmin() + backgroundScrollPaneAmount * backgroundNewPosition / calculateListItemsHeight());
-//                        }
-                    }
+                listViewScrollBar.valueProperty().addListener(observable1 -> {
+                    double listViewScrollAmount = listViewScrollBar.getValue();
+                    double listViewScrollPercentage = listViewScrollAmount / listViewScrollBar.getMax();
+
+                    double backgroundScrollPaneAmount = backgroundScrollPane.getVmax() - backgroundScrollPane.getVmin();
+                    backgroundScrollPane.setVvalue(backgroundScrollPane.getVmin() + backgroundScrollPaneAmount * listViewScrollPercentage);
                 });
 
                 listView.skinProperty().removeListener(this);
@@ -108,7 +98,6 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     }
 
     private final EventHandler<ScrollEvent> listViewScrollListener = event -> {
-        ++isAlreadyScrolling;
         double eventScroll = event.getDeltaY();
         double scrollValue = - Math.signum(eventScroll) * getSkinnable().getDefaultScrollAmount();
 
@@ -142,7 +131,6 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
             listViewTransition.setInterpolator(Interpolator.EASE_OUT);
 
             ParallelTransition parallelTransition = new ParallelTransition(timeline, listViewTransition);
-            parallelTransition.setOnFinished(onFinishedEvent -> --isAlreadyScrolling);
             parallelTransition.play();
         }
 
