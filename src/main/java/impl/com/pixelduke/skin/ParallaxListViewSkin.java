@@ -48,15 +48,12 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     private VirtualFlow listViewFlow;
     private ScrollBar listViewScrollBar;
 
-    /**
-     * Constructor for all SkinBase instances.
-     *
-     * @param control The control for which this Skin should attach to.
-     */
     public ParallaxListViewSkin(ParallaxListView<T> control) {
         super(control);
 
         backgroundScrollPane.setPannable(false);
+        backgroundScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        backgroundScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         ImageView backgroundNode = control.getBackgroundImage();
         backgroundScrollPane.setContent(backgroundNode);
 
