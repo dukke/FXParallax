@@ -1,14 +1,18 @@
-.parallax-list-view .list-cell {
+.parallax-list-view > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
     -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-padding: 10px 8px;
     -fx-font-size: 14px;
 }
 
-.parallax-list-view .list-cell:hover {
+.parallax-list-view > .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:hover {
     -fx-background-color: rgba(255, 255, 255, 0.3);
 }
 
-.parallax-list-view .list-view {
+.parallax-list-view > .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected {
+    -fx-background-color: rgba(70, 211, 246, 0.6);
+}
+
+.parallax-list-view > .list-view {
     -fx-background-color: rgba(0, 0, 0, 0.3);
 }
