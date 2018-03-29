@@ -33,6 +33,7 @@ import javafx.animation.*;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
@@ -42,7 +43,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     private final ScrollPane backgroundScrollPane = new ScrollPane();
     private final ListView<T> listView = new ListView<>();
 
-    private final int VERTICAL_DIFFERENCE = 100;
+    private final int SIZE_DIFFERENCE = 100;
     private final Duration ANIMATION_DURATION = Duration.millis(200);
 
     private VirtualFlow listViewFlow;
@@ -62,6 +63,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
         updateListViewVirtualFlow();
         updateListViewScrollListeners();
 
+        listView.orientationProperty().bind(control.orientationProperty());
         listView.itemsProperty().bind(control.itemsProperty());
         listView.heightProperty().addListener(observable -> updateBackgroundSize());
         getChildren().addAll(backgroundScrollPane, listView);
@@ -95,20 +97,37 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     }
 
     private final EventHandler<ScrollEvent> listViewScrollListener = event -> {
+        Orientation controlOrientation = getSkinnable().getOrietation();
+
         double eventScroll = event.getDeltaY();
         double scrollValue = - Math.signum(eventScroll) * getSkinnable().getDefaultScrollAmount();
 
-        double listViewItemsHeight = calculateListItemsHeight();
+        double listViewItemsSize = calculateListItemsSize();
 
         double listViewPosition = listViewFlow.getPosition();
         if(listViewPosition < 1 &&  listViewPosition > 0 || listViewPosition == 1 && scrollValue < 0 || listViewPosition == 0 && scrollValue > 0) {
-            double oldVBackgroundValue = backgroundScrollPane.getVvalue();
-            double percentageScroll = scrollValue / listViewItemsHeight;
+            double oldBackgroundScrollValue;
+            if (controlOrientation.equals(Orientation.VERTICAL)) {
+                oldBackgroundScrollValue = backgroundScrollPane.getVvalue();
+            } else {
+                oldBackgroundScrollValue = backgroundScrollPane.getHvalue();
+            }
+            double percentageScroll = scrollValue / listViewItemsSize;
 
-            double newBackgroundVValue = oldVBackgroundValue + percentageScroll * (backgroundScrollPane.getVmax() - backgroundScrollPane.getVmin());
+            double newBackgroundScrollValue;
+            if (controlOrientation.equals(Orientation.VERTICAL)) {
+                newBackgroundScrollValue = oldBackgroundScrollValue + percentageScroll * (backgroundScrollPane.getVmax() - backgroundScrollPane.getVmin());
+            } else {
+                newBackgroundScrollValue = oldBackgroundScrollValue + percentageScroll * (backgroundScrollPane.getHmax() - backgroundScrollPane.getHmin());
+            }
 
             final Timeline timeline = new Timeline();
-            final KeyValue endKeyValue = new KeyValue(backgroundScrollPane.vvalueProperty(), newBackgroundVValue, Interpolator.EASE_IN);
+            KeyValue endKeyValue;
+            if (controlOrientation.equals(Orientation.VERTICAL)) {
+                endKeyValue = new KeyValue(backgroundScrollPane.vvalueProperty(), newBackgroundScrollValue, Interpolator.EASE_IN);
+            } else {
+                endKeyValue = new KeyValue(backgroundScrollPane.hvalueProperty(), newBackgroundScrollValue, Interpolator.EASE_IN);
+            }
             final KeyFrame keyFrame = new KeyFrame(ANIMATION_DURATION, endKeyValue);
             timeline.getKeyFrames().add(keyFrame);
 
@@ -134,38 +153,39 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
         event.consume();
     };
 
-    private double calculateListItemsHeight() {
+    private double calculateListItemsSize() {
         double fixedCellSize = listView.getFixedCellSize();
-        double cellHeight;
+        double cellSize;
         if (fixedCellSize > 0) { // Cell heights are fixed
-            cellHeight = fixedCellSize;
-
+            cellSize = fixedCellSize;
         } else {
-            // We will calculate the cell height to be the height of the first cell.
-            // Afterwards we will assume all cells to be that same height.
+            // We will calculate the cell size to be the size of the first cell.
+            // Afterwards we will assume all cells to be that same size.
             ListCell cell = (ListCell) listView.lookup(".list-cell");
-            cellHeight = cell.getHeight();
+            if (getSkinnable().getOrietation().equals(Orientation.VERTICAL)) {
+                cellSize = cell.getHeight();
+            } else {
+                cellSize = cell.getWidth();
+            }
         }
-//        else {
-//            Set<Node> nodes = listView.lookupAll(".list-cell");
-//            for (Node node : nodes) {
-//                ListCell cell = (ListCell) node;
-//                listViewHeight += cell.getHeight();
-//            }
-//        }
-        return cellHeight * listView.getItems().size();
+
+        return cellSize * listView.getItems().size();
     }
 
     private void updateBackgroundSize() {
         if (listView.getSkin() != null) {
             ImageView backgroundImage = getSkinnable().getBackgroundImage();
-            changeImageHeight(backgroundImage, listView.getWidth(), listView.getHeight() + VERTICAL_DIFFERENCE);
+            if (getSkinnable().getOrietation().equals(Orientation.VERTICAL)) {
+                changeImageSize(backgroundImage, listView.getWidth(), listView.getHeight() + SIZE_DIFFERENCE);
+            } else {
+                changeImageSize(backgroundImage, listView.getWidth() + SIZE_DIFFERENCE, listView.getHeight());
+            }
         }
     }
 
-    // Utility method to change an ImageView size by filling the bounding box with width = targetWidth and height = targetHeight
-    // the image ratio will be preserved.
-    private static void changeImageHeight(ImageView imageView, double targetWidth, double targetHeight) {
+    // Utility method to change an ImageView size by filling a bounding box with width = targetWidth and height = targetHeight
+    // while image ratio is still preserved.
+    private static void changeImageSize(ImageView imageView, double targetWidth, double targetHeight) {
         double imageHeight = imageView.getBoundsInLocal().getHeight();
         double imageWidth = imageView.getBoundsInLocal().getWidth();
         double newHeightPercentage = targetHeight / imageHeight;

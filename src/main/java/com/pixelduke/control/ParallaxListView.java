@@ -30,6 +30,7 @@ package com.pixelduke.control;
 import impl.com.pixelduke.skin.ParallaxListViewSkin;
 import javafx.beans.property.*;
 import javafx.collections.ObservableList;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 import javafx.scene.image.ImageView;
@@ -82,7 +83,15 @@ public class ParallaxListView<T> extends Control {
     public final double getDefaultScrollAmount() { return defaultScrollAmount.get(); }
     private final SimpleDoubleProperty defaultScrollAmount = new SimpleDoubleProperty(150);
 
-
+    /**
+     * The orientation of the List, equal to {@link javafx.scene.control.ListView} orientation property.
+     * @defaultValue Horizontal
+     * @return A {@link ObjectProperty} with the orientation
+     */
+    public final ObjectProperty<Orientation> orientationProperty() { return orientation; }
+    public final void setOrientation(Orientation orientation) { this.orientation.set(orientation); }
+    public final Orientation getOrietation() { return this.orientation.get(); }
+    private final ObjectProperty<Orientation> orientation = new SimpleObjectProperty<>(Orientation.HORIZONTAL);
 
 
     @Override
