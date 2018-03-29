@@ -42,8 +42,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     private final ScrollPane backgroundScrollPane = new ScrollPane();
     private final ListView<T> listView = new ListView<>();
 
-    private final int VERTICAL_DIFFERENCE = 200;
-    private final int DEFAULT_SCROLL_AMOUNT = 150;
+    private final int VERTICAL_DIFFERENCE = 100;
     private final Duration ANIMATION_DURATION = Duration.millis(200);
 
     private VirtualFlow listViewFlow;
@@ -111,7 +110,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     private final EventHandler<ScrollEvent> listViewScrollListener = event -> {
         ++isAlreadyScrolling;
         double eventScroll = event.getDeltaY();
-        double scrollValue = - Math.signum(eventScroll) * DEFAULT_SCROLL_AMOUNT;
+        double scrollValue = - Math.signum(eventScroll) * getSkinnable().getDefaultScrollAmount();
 
         double listViewItemsHeight = calculateListItemsHeight();
 

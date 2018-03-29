@@ -28,8 +28,7 @@
 package com.pixelduke.control;
 
 import impl.com.pixelduke.skin.ParallaxListViewSkin;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
@@ -48,19 +47,18 @@ public class ParallaxListView<T> extends Control {
     }
 
 
-    private final ObjectProperty<ObservableList<T>> items = new SimpleObjectProperty<>(this, "items");
+    public final ObjectProperty<ObservableList<T>> itemsProperty() {
+        return items;
+    }
     public final ObservableList<T> getItems() {
         return items.get();
     }
     public final void setItems(ObservableList<T> items) {
         this.items.set(items);
     }
-    public final ObjectProperty<ObservableList<T>> itemsProperty() {
-        return items;
-    }
+    private final ObjectProperty<ObservableList<T>> items = new SimpleObjectProperty<>(this, "items");
 
 
-    private final ObjectProperty<ImageView> backgroundImage = new SimpleObjectProperty<>();
     public final ObjectProperty<ImageView> backgroundImageProperty() {
         return backgroundImage;
     }
@@ -70,6 +68,20 @@ public class ParallaxListView<T> extends Control {
     public final ImageView getBackgroundImage() {
         return this.backgroundImage.get();
     }
+    private final ObjectProperty<ImageView> backgroundImage = new SimpleObjectProperty<>();
+
+    /**
+     * The amount of scroll that is done in the List when the user performs a scroll by, for example, scrolling the
+     * mouse wheel.
+     *
+     * @defaultValue 150
+     * @return A {@link DoubleProperty} with the scroll amount
+     */
+    public final DoubleProperty defaultScrollAmountProperty() { return defaultScrollAmount; }
+    public final void setDefaultScrollAmount(double amount) { defaultScrollAmount.set(amount); }
+    public final double getDefaultScrollAmount() { return defaultScrollAmount.get(); }
+    private final SimpleDoubleProperty defaultScrollAmount = new SimpleDoubleProperty(150);
+
 
 
 
@@ -80,7 +92,7 @@ public class ParallaxListView<T> extends Control {
 
     @Override
     protected Skin<?> createDefaultSkin() {
-        return new ParallaxListViewSkin<T>(this);
+        return new ParallaxListViewSkin<>(this);
     }
 
 }
