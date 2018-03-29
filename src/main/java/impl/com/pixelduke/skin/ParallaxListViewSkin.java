@@ -43,7 +43,6 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     private final ScrollPane backgroundScrollPane = new ScrollPane();
     private final ListView<T> listView = new ListView<>();
 
-    private final int SIZE_DIFFERENCE = 100;
     private final Duration ANIMATION_DURATION = Duration.millis(200);
 
     private VirtualFlow listViewFlow;
@@ -173,12 +172,13 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     }
 
     private void updateBackgroundSize() {
+        ParallaxListView<T> control = getSkinnable();
         if (listView.getSkin() != null) {
             ImageView backgroundImage = getSkinnable().getBackgroundImage();
             if (getSkinnable().getOrietation().equals(Orientation.VERTICAL)) {
-                changeImageSize(backgroundImage, listView.getWidth(), listView.getHeight() + SIZE_DIFFERENCE);
+                changeImageSize(backgroundImage, listView.getWidth(), listView.getHeight() + control.getSizeDifference());
             } else {
-                changeImageSize(backgroundImage, listView.getWidth() + SIZE_DIFFERENCE, listView.getHeight());
+                changeImageSize(backgroundImage, listView.getWidth() + control.getSizeDifference(), listView.getHeight());
             }
         }
     }

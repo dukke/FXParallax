@@ -94,6 +94,12 @@ public class ParallaxListView<T> extends Control {
     private final ObjectProperty<Orientation> orientation = new SimpleObjectProperty<>(Orientation.HORIZONTAL);
 
 
+    private final DoubleProperty sizeDifference = new SimpleDoubleProperty(100);
+    public final DoubleProperty sizeDifferenceProperty() { return sizeDifference; }
+    public final void setSizeDifference(double value) { sizeDifference.set(value); }
+    public final double getSizeDifference() { return sizeDifference.get(); }
+
+
     @Override
     public String getUserAgentStylesheet() {
         return ParallaxListView.class.getResource("parallaxListView.css").toExternalForm();
