@@ -64,7 +64,12 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
 
         listView.orientationProperty().bind(control.orientationProperty());
         listView.itemsProperty().bind(control.itemsProperty());
+        listView.cellFactoryProperty().bind(control.cellFactoryProperty());
+        listView.selectionModelProperty().bind(control.selectionModelProperty());
+        listView.focusModelProperty().bind(control.focusModelProperty());
+
         listView.heightProperty().addListener(observable -> updateBackgroundSize());
+
         getChildren().addAll(backgroundScrollPane, listView);
     }
 

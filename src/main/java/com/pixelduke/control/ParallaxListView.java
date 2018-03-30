@@ -31,9 +31,10 @@ import impl.com.pixelduke.skin.ParallaxListViewSkin;
 import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
-import javafx.scene.control.Control;
-import javafx.scene.control.Skin;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.util.Callback;
 
 public class ParallaxListView<T> extends Control {
     private static final String DEFAULT_STYLE_CLASS = "parallax-list-view";
@@ -60,16 +61,88 @@ public class ParallaxListView<T> extends Control {
     private final ObjectProperty<ObservableList<T>> items = new SimpleObjectProperty<>(this, "items");
 
 
-    public final ObjectProperty<ImageView> backgroundImageProperty() {
-        return backgroundImage;
+
+    /**
+     * The orientation of the List, equal to {@link javafx.scene.control.ListView} orientation property.
+     * @defaultValue Horizontal
+     * @return A {@link ObjectProperty} with the orientation
+     */
+    public final ObjectProperty<Orientation> orientationProperty() { return orientation; }
+    public final void setOrientation(Orientation orientation) { this.orientation.set(orientation); }
+    public final Orientation getOrietation() { return this.orientation.get(); }
+    private final ObjectProperty<Orientation> orientation = new SimpleObjectProperty<>(Orientation.VERTICAL);
+
+
+    public final ObjectProperty<Callback<ListView<T>, ListCell<T>>> cellFactoryProperty() { return cellFactory; }
+    public final void setCellFactory(Callback<ListView<T>, ListCell<T>> factory) { cellFactory.set(factory); }
+    public final Callback<ListView<T>, ListCell<T>> getCellFactory() { return cellFactory.get(); }
+    private ObjectProperty<Callback<ListView<T>, ListCell<T>>> cellFactory = new SimpleObjectProperty<>();
+
+
+    // --- Selection Model
+    private ObjectProperty<MultipleSelectionModel<T>> selectionModel = new SimpleObjectProperty<>(this, "selectionModel");
+
+    /**
+     * Sets the {@link MultipleSelectionModel} to be used in the ParallaxListView.
+     * Despite a ParallaxListView requiring a <b>Multiple</b>SelectionModel, it is possible
+     * to configure it to only allow single selection (see
+     * {@link MultipleSelectionModel#setSelectionMode(javafx.scene.control.SelectionMode)}
+     * for more information).
+     */
+    public final void setSelectionModel(MultipleSelectionModel<T> value) {
+        selectionModel.set(value);
     }
-    public final void setBackgroundImage(ImageView backgroundNode) {
-        this.backgroundImage.set(backgroundNode);
+
+    /**
+     * Returns the currently installed selection model.
+     */
+    public final MultipleSelectionModel<T> getSelectionModel() {
+        return selectionModel.get();
     }
-    public final ImageView getBackgroundImage() {
-        return this.backgroundImage.get();
+
+    /**
+     * The SelectionModel provides the API through which it is possible
+     * to select single or multiple items within a ListView, as  well as inspect
+     * which items have been selected by the user. Note that it has a generic
+     * type that must match the type of the ListView itself.
+     */
+    public final ObjectProperty<MultipleSelectionModel<T>> selectionModelProperty() {
+        return selectionModel;
     }
-    private final ObjectProperty<ImageView> backgroundImage = new SimpleObjectProperty<>();
+
+
+
+    // --- Focus Model
+    private ObjectProperty<FocusModel<T>> focusModel = new SimpleObjectProperty<>(this, "focusModel");
+
+    /**
+     * Sets the {@link FocusModel} to be used in the ParallaxListView.
+     */
+    public final void setFocusModel(FocusModel<T> value) {
+        focusModel.set(value);
+    }
+
+    /**
+     * Returns the currently installed {@link FocusModel}.
+     */
+    public final FocusModel<T> getFocusModel() {
+        return focusModel.get();
+    }
+
+    /**
+     * The FocusModel provides the API through which it is possible
+     * to both get and set the focus on a single item within a ParallaxListView. Note
+     * that it has a generic type that must match the type of the ListView itself.
+     */
+    public final ObjectProperty<FocusModel<T>> focusModelProperty() {
+        return focusModel;
+    }
+
+
+
+
+
+
 
     /**
      * The amount of scroll that is done in the List when the user performs a scroll by, for example, scrolling the
@@ -83,21 +156,23 @@ public class ParallaxListView<T> extends Control {
     public final double getDefaultScrollAmount() { return defaultScrollAmount.get(); }
     private final SimpleDoubleProperty defaultScrollAmount = new SimpleDoubleProperty(150);
 
-    /**
-     * The orientation of the List, equal to {@link javafx.scene.control.ListView} orientation property.
-     * @defaultValue Horizontal
-     * @return A {@link ObjectProperty} with the orientation
-     */
-    public final ObjectProperty<Orientation> orientationProperty() { return orientation; }
-    public final void setOrientation(Orientation orientation) { this.orientation.set(orientation); }
-    public final Orientation getOrietation() { return this.orientation.get(); }
-    private final ObjectProperty<Orientation> orientation = new SimpleObjectProperty<>(Orientation.VERTICAL);
+    // Background Image property
+    public final ObjectProperty<ImageView> backgroundImageProperty() {
+        return backgroundImage;
+    }
+    public final void setBackgroundImage(ImageView backgroundNode) {
+        this.backgroundImage.set(backgroundNode);
+    }
+    public final ImageView getBackgroundImage() {
+        return this.backgroundImage.get();
+    }
+    private final ObjectProperty<ImageView> backgroundImage = new SimpleObjectProperty<>();
 
-
-    private final DoubleProperty sizeDifference = new SimpleDoubleProperty(100);
+    // Size difference property
     public final DoubleProperty sizeDifferenceProperty() { return sizeDifference; }
     public final void setSizeDifference(double value) { sizeDifference.set(value); }
     public final double getSizeDifference() { return sizeDifference.get(); }
+    private final DoubleProperty sizeDifference = new SimpleDoubleProperty(100);
 
 
     @Override
