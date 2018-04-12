@@ -139,9 +139,7 @@ public class ParallaxListView<T> extends Control {
     }
 
 
-
-
-
+    // *********** New API (not present on ListView) ********************
 
 
     /**

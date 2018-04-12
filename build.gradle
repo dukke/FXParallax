@@ -25,6 +25,10 @@ task javadocJar(type: Jar) {
     from javadoc
 }
 
+javadoc {
+    options.addStringOption('javafx', '-quiet')
+}
+
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
     classifier "sources"
