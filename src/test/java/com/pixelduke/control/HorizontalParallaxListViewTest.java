@@ -29,13 +29,14 @@ package com.pixelduke.control;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class Test extends Application {
+public class HorizontalParallaxListViewTest extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -48,7 +49,8 @@ public class Test extends Application {
                 "Brazil", "Uruguai", "South Korea", "England", "Ireland", "Scotland", "Wales", "Australia", "Peru", "Palestine", "Portugal", "Spain", "United States",
                 "Israel", "South Africa", "New Zealand", "Turkey", "Denmark", "Sweden", "Angola", "Canada", "Argentina",
                 "Brazil", "Uruguai", "South Korea", "England"));
-        ImageView image = new ImageView(new Image(Test.class.getResource("bay-landscape-wallpaper-725x483.jpg").toExternalForm()));
+        ImageView image = new ImageView(new Image(ParallaxListViewTest.class.getResource("bay-landscape-wallpaper-725x483.jpg").toExternalForm()));
+        parallaxListView.setOrientation(Orientation.HORIZONTAL);
         parallaxListView.setBackgroundImage(image);
 
         parallaxListView.setPrefWidth(993);
@@ -67,3 +69,4 @@ public class Test extends Application {
         launch(args);
     }
 }
+
