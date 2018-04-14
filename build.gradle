@@ -42,7 +42,7 @@ bintray {
         name = project.name
         //userOrg = 'dukke'
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/dukke/FXRibbon.git'
+        vcsUrl = 'https://github.com/dukke/FXParallax.git'
         publications = ['mavenJava']
         websiteUrl = 'https://www.pixelduke.com/fxparallax'
         issueTrackerUrl = 'https://github.com/dukke/FXParallax/issues'
