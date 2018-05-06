@@ -28,41 +28,49 @@
 package com.pixelduke.control;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ParallaxListViewTest extends Application {
+import java.io.IOException;
+
+public class ParallaxPaneWithImageTest extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithImageTest.fxml"));
+
+        BorderPane rootPane = fxmlLoader.load();
+        rootPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        ScrollPane scrollPane = new ScrollPane(rootPane);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
         BorderPane rootNode = new BorderPane();
-
-        ParallaxListView parallaxListView = new ParallaxListView<>(FXCollections.observableArrayList("Portugal", "Spain", "United States",
-                "Israel", "South Africa", "New Zealand", "Turkey", "Denmark", "Sweden", "Angola", "Canada", "Argentina",
-                "Brazil", "Uruguai", "South Korea", "England", "Ireland", "Scotland", "Wales", "Australia", "Peru", "Palestine", "Portugal", "Spain", "United States",
-                "Israel", "South Africa", "New Zealand", "Turkey", "Denmark", "Sweden", "Angola", "Canada", "Argentina",
-                "Brazil", "Uruguai", "South Korea", "England", "Ireland", "Scotland", "Wales", "Australia", "Peru", "Palestine", "Portugal", "Spain", "United States",
-                "Israel", "South Africa", "New Zealand", "Turkey", "Denmark", "Sweden", "Angola", "Canada", "Argentina",
-                "Brazil", "Uruguai", "South Korea", "England"));
-        ImageView image = new ImageView(new Image(ParallaxListViewTest.class.getResource("bay-landscape-wallpaper-725x483.jpg").toExternalForm()));
-        parallaxListView.setBackgroundImage(image);
-
-        parallaxListView.setPrefWidth(993);
-
+        rootNode.setCenter(scrollPane);
 
         Scene scene = new Scene(rootNode);
+
+        scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithImageTest.css").toExternalForm());
 
 //        ScenicView.show(scene);
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        primaryStage.setMaximized(true);
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 }
+

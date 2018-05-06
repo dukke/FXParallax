@@ -8,7 +8,7 @@ For more information check [https://www.pixelduke.com/fxparallax](https://www.pi
 
 ## Issues and Contributions
 Issues can be reported to the Issue tracker. If you're not sponsoring or fixing them yourself,
-please be patiente as I can only work on them during my spare time and according to priorities.  
+please be patiente as I can only work on them during my spare time and according to priorities.
 We welcome contributions, they can be submitted via Pull requests.
 
 ## How to get the library

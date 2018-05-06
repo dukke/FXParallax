@@ -1,0 +1,62 @@
+.background {
+    -fx-background-color: white;
+}
+
+.h3 {
+    -fx-font-size: 26px;
+    -fx-padding: 10px 0 10px 0;
+    -fx-text-fill: #111;
+}
+
+.h2 {
+    -fx-font-size: 36px;
+    -fx-padding: 30px 0 10px 0;
+    -fx-text-fill: #017ded;
+}
+
+.h1 {
+    -fx-font-size: 16px;
+    -fx-text-fill: #111;
+    -fx-padding: 0 0 0 20px;
+}
+
+.h1-container {
+    -fx-pref-height: 60px;
+    -fx-max-height: 60px;
+
+    -fx-background-color: white;
+
+    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 4, 0, 0, 1);*/
+    -fx-padding: 0 0 0 50px;
+    -fx-alignment: center-left;
+}
+
+.body-text {
+    -fx-font-size: 16px;
+    -fx-text-fill: #111;
+    -fx-line-spacing: 1.6;
+    -fx-padding: 10px 0 10px 0;
+    -fx-wrap-text: true;
+}
+
+.h2, .h3, .body-text, .text-container > .separator{
+    -fx-pref-width: 805;
+    -fx-max-width: 805;
+}
+
+.text-container {
+    -fx-alignment: center;
+}
+
+.text-container > .separator {
+    -fx-alignment: center;
+}
+
+.parallax-pane {
+    -fx-padding: 25px 0 25px 0;
+    -fx-pref-height: 600px;
+}
+
+.parallax-pane.first-image {
+    -fx-padding: 0px 0 10px 0;
+}
