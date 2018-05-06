@@ -28,6 +28,7 @@
 package com.pixelduke.control;
 
 import impl.com.pixelduke.skin.ParallaxListViewSkin;
+import javafx.beans.DefaultProperty;
 import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
@@ -36,6 +37,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
+@DefaultProperty("items")
 public class ParallaxListView<T> extends Control {
     private static final String DEFAULT_STYLE_CLASS = "parallax-list-view";
 

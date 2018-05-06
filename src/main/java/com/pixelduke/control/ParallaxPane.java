@@ -28,6 +28,7 @@
 package com.pixelduke.control;
 
 import impl.com.pixelduke.skin.ParallaxPaneSkin;
+import javafx.beans.DefaultProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -38,6 +39,7 @@ import javafx.scene.control.Skin;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+@DefaultProperty("content")
 public class ParallaxPane extends Control {
     private static final String DEFAULT_STYLE_CLASS = "parallax-pane";
 
