@@ -40,10 +40,10 @@ import javafx.scene.input.ScrollEvent;
 import javafx.util.Duration;
 
 public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
+    private final Duration ANIMATION_DURATION = Duration.millis(200);
+
     private final ScrollPane backgroundScrollPane = new ScrollPane();
     private final ListView<T> listView = new ListView<>();
-
-    private final Duration ANIMATION_DURATION = Duration.millis(200);
 
     private VirtualFlow listViewFlow;
     private ScrollBar listViewScrollBar;
@@ -51,7 +51,6 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     public ParallaxListViewSkin(ParallaxListView<T> control) {
         super(control);
 
-        backgroundScrollPane.setPannable(false);
         backgroundScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         backgroundScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         ImageView backgroundNode = control.getBackgroundImage();
@@ -73,8 +72,6 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
         getChildren().addAll(backgroundScrollPane, listView);
     }
 
-
-
     private void updateListViewVirtualFlow() {
         listView.skinProperty().addListener(new InvalidationListener() {
             @Override
@@ -87,8 +84,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
                     double listViewScrollAmount = listViewScrollBar.getValue();
                     double listViewScrollPercentage = listViewScrollAmount / listViewScrollBar.getMax();
 
-                    double backgroundScrollPaneAmount = backgroundScrollPane.getVmax() - backgroundScrollPane.getVmin();
-                    backgroundScrollPane.setVvalue(backgroundScrollPane.getVmin() + backgroundScrollPaneAmount * listViewScrollPercentage);
+                    backgroundScrollPane.setVvalue(listViewScrollPercentage);
                 });
 
                 listView.skinProperty().removeListener(this);
@@ -120,9 +116,9 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
 
             double newBackgroundScrollValue;
             if (controlOrientation.equals(Orientation.VERTICAL)) {
-                newBackgroundScrollValue = oldBackgroundScrollValue + percentageScroll * (backgroundScrollPane.getVmax() - backgroundScrollPane.getVmin());
+                newBackgroundScrollValue = oldBackgroundScrollValue + percentageScroll;
             } else {
-                newBackgroundScrollValue = oldBackgroundScrollValue + percentageScroll * (backgroundScrollPane.getHmax() - backgroundScrollPane.getHmin());
+                newBackgroundScrollValue = oldBackgroundScrollValue + percentageScroll;
             }
 
             final Timeline timeline = new Timeline();
