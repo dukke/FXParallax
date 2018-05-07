@@ -32,6 +32,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -63,6 +64,8 @@ public class ParallaxPaneWithImageTest extends Application {
 
 //        ScenicView.show(scene);
 
+        primaryStage.getIcons().add(new Image(ParallaxPaneWithImageTest.class.getResource("Pixel Duke icon_16.png").toExternalForm()));
+        primaryStage.setTitle("ParallaxPane Demo");
         primaryStage.setScene(scene);
         primaryStage.show();
 

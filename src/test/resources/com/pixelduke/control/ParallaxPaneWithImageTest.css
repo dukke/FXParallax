@@ -44,11 +44,12 @@
     -fx-max-width: 805;
 }
 
-.text-container {
+.text-container > .separator {
+    -fx-padding: 10px 0 20px 0;
     -fx-alignment: center;
 }
 
-.text-container > .separator {
+.text-container {
     -fx-alignment: center;
 }
 
