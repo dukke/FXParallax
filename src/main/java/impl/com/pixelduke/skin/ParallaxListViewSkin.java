@@ -39,6 +39,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
 import javafx.util.Duration;
 
+import static impl.com.pixelduke.skin.Utils.changeImageSize;
+
 public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     private final Duration ANIMATION_DURATION = Duration.millis(200);
 
@@ -182,26 +184,6 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
                 changeImageSize(backgroundImage, listView.getWidth() + control.getSizeDifference(), listView.getHeight());
             }
         }
-    }
-
-    // Utility method to change an ImageView size by filling a bounding box with width = targetWidth and height = targetHeight
-    // while image ratio is still preserved.
-    private static void changeImageSize(ImageView imageView, double targetWidth, double targetHeight) {
-        double imageHeight = imageView.getBoundsInLocal().getHeight();
-        double imageWidth = imageView.getBoundsInLocal().getWidth();
-        double newHeightPercentage = targetHeight / imageHeight;
-        double newWidthPercentage = targetWidth / imageWidth;
-
-        double newSizePercentage;
-        if (newWidthPercentage < newHeightPercentage) {
-            // We can change the width by newHeightPercentage and reach the targetWidth
-            newSizePercentage = newHeightPercentage;
-        } else {
-            // We can change the height by NewWidthPercentage and reach the targetHeight
-            newSizePercentage = newWidthPercentage;
-        }
-        imageView.setFitHeight(imageHeight * newSizePercentage);
-        imageView.setFitWidth(imageWidth * newSizePercentage);
     }
 
     @Override

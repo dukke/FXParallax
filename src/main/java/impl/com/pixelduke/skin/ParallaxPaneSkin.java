@@ -114,13 +114,12 @@ public class ParallaxPaneSkin extends SkinBase<ParallaxPane> {
         double currentContentHeight = getSkinnable().getContent().getBoundsInLocal().getHeight();
         double expectedContentHeight = scrollPaneHeight + verticalSizeDifference;
 
-        if (currentContentHeight < expectedContentHeight) {
-            Node content = getSkinnable().getContent();
-            double newHeightPercentage = expectedContentHeight / currentContentHeight;
-            double newContentWidth = content.getBoundsInLocal().getWidth() * newHeightPercentage;
-            content.resize(newContentWidth, expectedContentHeight);
+        if (currentContentHeight != expectedContentHeight) {
+            Utils.changeImageSize(getSkinnable().getContent(), getSkinnable().getWidth(), expectedContentHeight);
         }
     }
+
+
 
     @Override
     protected void layoutChildren(double contentX, double contentY, double contentWidth, double contentHeight) {
