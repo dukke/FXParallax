@@ -71,7 +71,7 @@ public class ParallaxListView<T> extends Control {
      */
     public final ObjectProperty<Orientation> orientationProperty() { return orientation; }
     public final void setOrientation(Orientation orientation) { this.orientation.set(orientation); }
-    public final Orientation getOrietation() { return this.orientation.get(); }
+    public final Orientation getOrientation() { return this.orientation.get(); }
     private final ObjectProperty<Orientation> orientation = new SimpleObjectProperty<>(Orientation.VERTICAL);
 
 
