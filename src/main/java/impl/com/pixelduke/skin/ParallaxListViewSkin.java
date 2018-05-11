@@ -55,8 +55,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
 
         backgroundScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         backgroundScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        ImageView backgroundNode = control.getBackgroundImage();
-        backgroundScrollPane.setContent(backgroundNode);
+        backgroundScrollPane.setContent(control.getBackgroundImage());
 
         control.backgroundImageProperty().addListener(observable -> backgroundScrollPane.setContent(control.getBackgroundImage()));
 
@@ -102,19 +101,19 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
         Orientation controlOrientation = getSkinnable().getOrietation();
 
         double eventScroll = event.getDeltaY();
-        double scrollValue = - Math.signum(eventScroll) * getSkinnable().getDefaultScrollAmount();
-
-        double listViewItemsSize = calculateListItemsSize();
 
         double listViewPosition = listViewFlow.getPosition();
-        if(listViewPosition < 1 &&  listViewPosition > 0 || listViewPosition == 1 && scrollValue < 0 || listViewPosition == 0 && scrollValue > 0) {
+        if(listViewPosition < 1 &&  listViewPosition > 0 || listViewPosition == 1 && -eventScroll < 0 || listViewPosition == 0 && -eventScroll > 0) {
+            // Background ScrollPane animation
             double oldBackgroundScrollValue;
             if (controlOrientation.equals(Orientation.VERTICAL)) {
                 oldBackgroundScrollValue = backgroundScrollPane.getVvalue();
             } else {
                 oldBackgroundScrollValue = backgroundScrollPane.getHvalue();
             }
-            double percentageScroll = scrollValue / listViewItemsSize;
+
+            double scrollValue = - Math.signum(eventScroll) * getSkinnable().getDefaultScrollAmount();
+            double percentageScroll = scrollValue / calculateListItemsSize();
 
             double newBackgroundScrollValue;
             if (controlOrientation.equals(Orientation.VERTICAL)) {
@@ -122,7 +121,6 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
             } else {
                 newBackgroundScrollValue = oldBackgroundScrollValue + percentageScroll;
             }
-
             final Timeline timeline = new Timeline();
             KeyValue endKeyValue;
             if (controlOrientation.equals(Orientation.VERTICAL)) {
@@ -133,6 +131,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
             final KeyFrame keyFrame = new KeyFrame(ANIMATION_DURATION, endKeyValue);
             timeline.getKeyFrames().add(keyFrame);
 
+            // ListView animation
             Transition listViewTransition = new Transition() {
                 double oldPosition;
                 {
@@ -148,6 +147,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
             };
             listViewTransition.setInterpolator(Interpolator.EASE_OUT);
 
+            // Do both animations in parallel
             ParallelTransition parallelTransition = new ParallelTransition(timeline, listViewTransition);
             parallelTransition.play();
         }
