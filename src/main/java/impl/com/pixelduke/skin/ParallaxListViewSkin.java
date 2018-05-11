@@ -102,7 +102,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
         double listViewPosition = listViewFlow.getPosition();
 
         if(listViewPosition < 1 &&  listViewPosition > 0 || listViewPosition == 1 && -eventScroll < 0 || listViewPosition == 0 && -eventScroll > 0) {
-            Orientation controlOrientation = getSkinnable().getOrietation();
+            Orientation controlOrientation = getSkinnable().getOrientation();
 
             // Background ScrollPane animation
             double oldBackgroundScrollValue;
@@ -164,7 +164,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
             // We will calculate the cell size to be the size of the first cell.
             // Afterwards we will assume all cells to be that same size.
             ListCell cell = (ListCell) listView.lookup(".list-cell");
-            if (getSkinnable().getOrietation().equals(Orientation.VERTICAL)) {
+            if (getSkinnable().getOrientation().equals(Orientation.VERTICAL)) {
                 cellSize = cell.getHeight();
             } else {
                 cellSize = cell.getWidth();
@@ -178,7 +178,7 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
         ParallaxListView<T> control = getSkinnable();
         if (listView.getSkin() != null) {
             ImageView backgroundImage = getSkinnable().getBackgroundImage();
-            if (getSkinnable().getOrietation().equals(Orientation.VERTICAL)) {
+            if (getSkinnable().getOrientation().equals(Orientation.VERTICAL)) {
                 changeImageSize(backgroundImage, listView.getWidth(), listView.getHeight() + control.getSizeDifference());
             } else {
                 changeImageSize(backgroundImage, listView.getWidth() + control.getSizeDifference(), listView.getHeight());
