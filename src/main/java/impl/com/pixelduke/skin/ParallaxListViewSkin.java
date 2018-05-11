@@ -98,12 +98,12 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     }
 
     private final EventHandler<ScrollEvent> listViewScrollListener = event -> {
-        Orientation controlOrientation = getSkinnable().getOrietation();
-
         double eventScroll = event.getDeltaY();
-
         double listViewPosition = listViewFlow.getPosition();
+
         if(listViewPosition < 1 &&  listViewPosition > 0 || listViewPosition == 1 && -eventScroll < 0 || listViewPosition == 0 && -eventScroll > 0) {
+            Orientation controlOrientation = getSkinnable().getOrietation();
+
             // Background ScrollPane animation
             double oldBackgroundScrollValue;
             if (controlOrientation.equals(Orientation.VERTICAL)) {

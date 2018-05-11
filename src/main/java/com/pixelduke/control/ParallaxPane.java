@@ -66,9 +66,7 @@ public class ParallaxPane extends Control {
     /*
      * @treatAsPrivate I just have this method because we need to have a method with this name to be able to have an  image property in FXML.
      * Not intended to be used.
-     * @deprecated Not intended to be used.
      */
-    @Deprecated
     public final Image getImage() {
         throw new UnsupportedOperationException("This method is not supported. It only exists so that FXML loader accepts the image property for this control");
     }
