@@ -34,6 +34,12 @@ task sourceJar(type: Jar) {
     classifier "sources"
 }
 
+artifacts {
+    archives sourceJar
+    archives javadocJar
+}
+
+/* Publishing */
 bintray {
     user = System.getenv('BINTRAY_USER')
     key = System.getenv('BINTRAY_KEY')
