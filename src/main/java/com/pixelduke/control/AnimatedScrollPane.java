@@ -35,7 +35,7 @@ import javafx.util.Duration;
 
 public class AnimatedScrollPane extends ScrollPane {
     private static final int DEFAULT_SCROLL_AMOUNT = 150;
-    private final Duration ANIMATION_DURATION = Duration.millis(200);
+    private final Duration ANIMATION_DURATION = Duration.millis(300);
 
 //    ScrollBar scrollBar;
 
