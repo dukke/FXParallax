@@ -7,7 +7,7 @@ plugins {
 sourceCompatibility = '1.8'
 
 group = 'com.pixelduke'
-version = '1.0.0'
+version = '2.0.0'
 def versionDescription = 'FXParallax First release'
 
 
