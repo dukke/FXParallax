@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Separator?>
 <?import com.pixelduke.control.ParallaxPane?>
-<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" styleClass="background">
+<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <center>
-        <VBox styleClass="background">
+        <VBox>
             <ParallaxPane styleClass="first-image">
                 <image>
                     <Image url="@small-business3-1482533-1919x1171.jpg" />
@@ -31,7 +31,7 @@
                 <Label text="Praesent eu ante sed ex bibendum condimentum et nec magna. Maecenas at laoreet urna, id euismod lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc sollicitudin faucibus commodo. Aliquam vel consectetur nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam sit amet massa nec dolor placerat cursus eu elementum justo. Vivamus pulvinar ipsum eu mauris cursus facilisis. Maecenas et nisi ac elit efficitur tincidunt ac at massa. Mauris ut lectus non orci dictum luctus. Nulla nulla sem, dignissim et nulla et, tempor facilisis orci. Pellentesque urna erat, interdum in bibendum non, varius quis augue. Nunc vitae cursus odio." wrapText="true" styleClass="body-text">
                 </Label>
             </VBox>
-            <ParallaxPane verticalSizeDifference="0">
+            <ParallaxPane>
                 <image>
                     <Image url="@sydney-opera-house-1526075-1920x1440.jpg" />
                 </image>

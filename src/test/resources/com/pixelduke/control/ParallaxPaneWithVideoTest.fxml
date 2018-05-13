@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Separator?>
+<?import com.pixelduke.control.ParallaxPane?>
+<!--
+  ~ Copyright (c) 2018 Pixel Duke (Pedro Duque Vieira - www.pixelduke.com)
+  ~ All rights reserved.
+  ~
+  ~ Redistribution and use in source and binary forms, with or without
+  ~ modification, are permitted provided that the following conditions are met:
+  ~   * Redistributions of source code must retain the above copyright
+  ~ notice, this list of conditions and the following disclaimer.
+  ~   * Redistributions in binary form must reproduce the above copyright
+  ~ notice, this list of conditions and the following disclaimer in the
+  ~ documentation and/or other materials provided with the distribution.
+  ~   * Neither the name of Pixel Duke, any associated website, nor the
+  ~ names of its contributors may be used to endorse or promote products
+  ~ derived from this software without specific prior written permission.
+  ~
+  ~ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+  ~ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  ~ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  ~ DISCLAIMED. IN NO EVENT SHALL PIXEL DUKE BE LIABLE FOR ANY
+  ~ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+  ~ (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  ~ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+  ~ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  ~ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  ~ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  -->
+
+<?import javafx.scene.media.MediaPlayer?>
+<?import javafx.scene.media.Media?>
+<?import javafx.scene.media.MediaView?>
+<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <VBox styleClass="main-container">
+            <ParallaxPane styleClass="first-image">
+                <image>
+                    <Image url="@small-business3-1482533-1919x1171.jpg" />
+                </image>
+            </ParallaxPane>
+            <VBox styleClass="text-container">
+                <Label styleClass="h2">
+                    FXParallax
+                </Label>
+                <Label styleClass="h3">
+                    ParallaxPane
+                </Label>
+                <Label styleClass="body-text">
+                    ParallaxPane makes it possible to add a Node with a parallax effect to a javafx scene. The correct "angle", depending on the ParallaxPane's position is
+                    automatically adjusted, simply create and add the ParallaxPane instance to a scene and set its content property to the Node you want a parallax effect to be added to.
+                </Label>
+                <Separator />
+                <Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultrices varius tincidunt. Phasellus rhoncus imperdiet neque, eget facilisis erat vestibulum ac. Nam fermentum nunc quis nulla imperdiet, iaculis tempor massa mollis. Integer molestie justo eu orci tempor, nec iaculis sem maximus. Duis a sollicitudin purus. Aliquam erat volutpat. Ut eu rhoncus diam. Cras malesuada tempor ultricies. Maecenas tincidunt sapien at rutrum laoreet. Morbi viverra non dui sit amet tincidunt. Pellentesque quis elit massa." wrapText="true" styleClass="body-text">
+                </Label>
+                <Label text="Praesent eu ante sed ex bibendum condimentum et nec magna. Maecenas at laoreet urna, id euismod lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc sollicitudin faucibus commodo. Aliquam vel consectetur nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam sit amet massa nec dolor placerat cursus eu elementum justo. Vivamus pulvinar ipsum eu mauris cursus facilisis. Maecenas et nisi ac elit efficitur tincidunt ac at massa. Mauris ut lectus non orci dictum luctus. Nulla nulla sem, dignissim et nulla et, tempor facilisis orci. Pellentesque urna erat, interdum in bibendum non, varius quis augue. Nunc vitae cursus odio." wrapText="true" styleClass="body-text">
+                </Label>
+            </VBox>
+            <ParallaxPane styleClass="video">
+                <MediaView >
+                    <mediaPlayer>
+                        <MediaPlayer autoPlay="true" mute="true">
+                            <media>
+                                <Media source="@Swimming_10835.mp4" />
+                            </media>
+                            <cycleCount>
+                                <MediaPlayer fx:constant="INDEFINITE" />
+                            </cycleCount>
+                        </MediaPlayer>
+                    </mediaPlayer>
+                </MediaView>
+            </ParallaxPane>
+            <VBox styleClass="text-container">
+                <Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultrices varius tincidunt. Phasellus rhoncus imperdiet neque, eget facilisis erat vestibulum ac. Nam fermentum nunc quis nulla imperdiet, iaculis tempor massa mollis. Integer molestie justo eu orci tempor, nec iaculis sem maximus. Duis a sollicitudin purus. Aliquam erat volutpat. Ut eu rhoncus diam. Cras malesuada tempor ultricies. Maecenas tincidunt sapien at rutrum laoreet. Morbi viverra non dui sit amet tincidunt. Pellentesque quis elit massa." wrapText="true" styleClass="body-text">
+                </Label>
+                <Label text="Praesent eu ante sed ex bibendum condimentum et nec magna. Maecenas at laoreet urna, id euismod lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc sollicitudin faucibus commodo. Aliquam vel consectetur nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam sit amet massa nec dolor placerat cursus eu elementum justo. Vivamus pulvinar ipsum eu mauris cursus facilisis. Maecenas et nisi ac elit efficitur tincidunt ac at massa. Mauris ut lectus non orci dictum luctus. Nulla nulla sem, dignissim et nulla et, tempor facilisis orci. Pellentesque urna erat, interdum in bibendum non, varius quis augue. Nunc vitae cursus odio." wrapText="true" styleClass="body-text">
+                </Label>
+                <Label text="Duis pulvinar congue porta. Praesent consectetur, nisl tempor rhoncus molestie, lectus purus feugiat erat, eu ornare lorem elit ut risus. Pellentesque urna augue, auctor quis sapien vitae, mattis convallis nisl. In hac habitasse platea dictumst. Phasellus fermentum, arcu et vehicula maximus, massa urna consequat augue, ac sodales libero urna sit amet enim. Maecenas vehicula volutpat facilisis. Quisque quis urna rhoncus, interdum est at, fermentum purus. Pellentesque nec fermentum justo, at eleifend neque. Sed eget nunc aliquet, egestas sem eget, finibus urna. Donec tristique erat diam, non elementum risus tincidunt ac. Ut vehicula risus vitae est porta accumsan." wrapText="true" styleClass="body-text">
+                </Label>
+                <Label styleClass="body-text">
+                    Ut facilisis congue pharetra. Suspendisse interdum neque nulla, ut consequat lacus iaculis quis. Vivamus suscipit sollicitudin feugiat. Donec vulputate arcu eget accumsan pharetra. Pellentesque in augue pulvinar, tristique libero nec, placerat nisl. Proin placerat vestibulum sollicitudin. Pellentesque mattis ex eu lorem vulputate venenatis. Etiam suscipit vitae magna et tempus. Curabitur posuere mauris sed quam consectetur, ut commodo nisl varius.
+                </Label>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

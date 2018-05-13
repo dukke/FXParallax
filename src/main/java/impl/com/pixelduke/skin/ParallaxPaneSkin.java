@@ -29,10 +29,8 @@ package impl.com.pixelduke.skin;
 
 import com.pixelduke.control.ParallaxPane;
 import javafx.animation.AnimationTimer;
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SkinBase;
-import javafx.scene.image.ImageView;
 
 public class ParallaxPaneSkin extends SkinBase<ParallaxPane> {
     private ScrollPane scrollPane;
@@ -115,11 +113,9 @@ public class ParallaxPaneSkin extends SkinBase<ParallaxPane> {
         double expectedContentHeight = scrollPaneHeight + verticalSizeDifference;
 
         if (currentContentHeight != expectedContentHeight) {
-            Utils.changeImageSize(getSkinnable().getContent(), getSkinnable().getWidth(), expectedContentHeight);
+            Utils.changeNodeSize(getSkinnable().getContent(), getSkinnable().getWidth(), expectedContentHeight);
         }
     }
-
-
 
     @Override
     protected void layoutChildren(double contentX, double contentY, double contentWidth, double contentHeight) {

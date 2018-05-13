@@ -39,7 +39,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
 import javafx.util.Duration;
 
-import static impl.com.pixelduke.skin.Utils.changeImageSize;
+import static impl.com.pixelduke.skin.Utils.changeNodeSize;
 
 public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
     private final Duration ANIMATION_DURATION = Duration.millis(200);
@@ -179,9 +179,9 @@ public class ParallaxListViewSkin<T> extends SkinBase<ParallaxListView<T>> {
         if (listView.getSkin() != null) {
             ImageView backgroundImage = getSkinnable().getBackgroundImage();
             if (getSkinnable().getOrientation().equals(Orientation.VERTICAL)) {
-                changeImageSize(backgroundImage, listView.getWidth(), listView.getHeight() + control.getSizeDifference());
+                changeNodeSize(backgroundImage, listView.getWidth(), listView.getHeight() + control.getSizeDifference());
             } else {
-                changeImageSize(backgroundImage, listView.getWidth() + control.getSizeDifference(), listView.getHeight());
+                changeNodeSize(backgroundImage, listView.getWidth() + control.getSizeDifference(), listView.getHeight());
             }
         }
     }

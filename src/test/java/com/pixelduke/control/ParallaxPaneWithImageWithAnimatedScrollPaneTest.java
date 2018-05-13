@@ -60,7 +60,7 @@ public class ParallaxPaneWithImageWithAnimatedScrollPaneTest extends Application
 
         Scene scene = new Scene(rootNode);
 
-        scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithImageTest.css").toExternalForm());
+        scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneTest.css").toExternalForm());
 
 //        ScenicView.show(scene);
 

@@ -50,17 +50,13 @@ public class ParallaxPaneWithImageTest extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithImageTest.fxml"));
 
         BorderPane rootPane = fxmlLoader.load();
-        rootPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         ScrollPane scrollPane = new ScrollPane(rootPane);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        BorderPane rootNode = new BorderPane();
-        rootNode.setCenter(scrollPane);
+        Scene scene = new Scene(scrollPane);
 
-        Scene scene = new Scene(rootNode);
-
-        scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithImageTest.css").toExternalForm());
+        scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneTest.css").toExternalForm());
 
 //        ScenicView.show(scene);
 

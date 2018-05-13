@@ -29,11 +29,12 @@ package impl.com.pixelduke.skin;
 
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.MediaView;
 
 class Utils {
     // Utility method to change a Node size by filling a bounding box with width = targetWidth and height = targetHeight
     // while ratio is still preserved.
-    static void changeImageSize(Node node, double targetWidth, double targetHeight) {
+    static void changeNodeSize(Node node, double targetWidth, double targetHeight) {
         double nodeHeight = node.getBoundsInLocal().getHeight();
         double nodeWidth = node.getBoundsInLocal().getWidth();
         double newHeightPercentage = targetHeight / nodeHeight;
@@ -47,10 +48,16 @@ class Utils {
             // We can change the height by NewWidthPercentage and reach the targetHeight
             newSizePercentage = newWidthPercentage;
         }
+
+        // Resize
         if (node instanceof ImageView) {
             ImageView imageView = (ImageView) node;
             imageView.setFitHeight(nodeHeight * newSizePercentage);
             imageView.setFitWidth(nodeWidth * newSizePercentage);
+        } else if (node instanceof MediaView){
+            MediaView mediaView = (MediaView) node;
+            mediaView.setFitHeight(nodeHeight * newSizePercentage);
+            mediaView.setFitWidth(nodeWidth * newSizePercentage);
         } else {
             node.resize(nodeWidth * newSizePercentage, nodeHeight * newSizePercentage);
         }
