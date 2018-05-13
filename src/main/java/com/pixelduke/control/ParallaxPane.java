@@ -29,6 +29,7 @@ package com.pixelduke.control;
 
 import impl.com.pixelduke.skin.ParallaxPaneSkin;
 import javafx.beans.DefaultProperty;
+import javafx.beans.NamedArg;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -53,7 +54,7 @@ public class ParallaxPane extends Control {
         getStyleClass().setAll(DEFAULT_STYLE_CLASS);
     }
 
-    public ParallaxPane(Image image){
+    public ParallaxPane(@NamedArg("image")Image image){
         this();
         setImage(image);
     }
@@ -61,14 +62,6 @@ public class ParallaxPane extends Control {
     public final void setImage(Image image) {
         ImageView imageView = new ImageView(image);
         setContent(imageView);
-    }
-
-    /*
-     * @treatAsPrivate I just have this method because we need to have a method with this name to be able to have an  image property in FXML.
-     * Not intended to be used.
-     */
-    public final Image getImage() {
-        throw new UnsupportedOperationException("This method is not supported. It only exists so that FXML loader accepts the image property for this control");
     }
 
     /***************************************************************************
