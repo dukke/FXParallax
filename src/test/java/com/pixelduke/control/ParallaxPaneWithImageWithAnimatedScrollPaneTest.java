@@ -29,15 +29,10 @@ package com.pixelduke.control;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -50,15 +45,11 @@ public class ParallaxPaneWithImageWithAnimatedScrollPaneTest extends Application
         FXMLLoader fxmlLoader = new FXMLLoader(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithImageTest.fxml"));
 
         BorderPane rootPane = fxmlLoader.load();
-        rootPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         AnimatedScrollPane scrollPane = new AnimatedScrollPane(rootPane);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        BorderPane rootNode = new BorderPane();
-        rootNode.setCenter(scrollPane);
-
-        Scene scene = new Scene(rootNode);
+        Scene scene = new Scene(scrollPane);
 
         scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneTest.css").toExternalForm());
 

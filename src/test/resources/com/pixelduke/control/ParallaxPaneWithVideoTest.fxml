@@ -62,18 +62,20 @@
                 </Label>
             </VBox>
             <ParallaxPane styleClass="video">
-                <MediaView >
-                    <mediaPlayer>
-                        <MediaPlayer autoPlay="true" mute="true">
-                            <media>
-                                <Media source="@Swimming_10835.mp4" />
-                            </media>
-                            <cycleCount>
-                                <MediaPlayer fx:constant="INDEFINITE" />
-                            </cycleCount>
-                        </MediaPlayer>
-                    </mediaPlayer>
-                </MediaView>
+                <content>
+                    <MediaView >
+                        <mediaPlayer>
+                            <MediaPlayer autoPlay="true" mute="true">
+                                <media>
+                                    <Media source="@Swimming_10835.mp4" />
+                                </media>
+                                <cycleCount>
+                                    <MediaPlayer fx:constant="INDEFINITE" />
+                                </cycleCount>
+                            </MediaPlayer>
+                        </mediaPlayer>
+                    </MediaView>
+                </content>
             </ParallaxPane>
             <VBox styleClass="text-container">
                 <Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultrices varius tincidunt. Phasellus rhoncus imperdiet neque, eget facilisis erat vestibulum ac. Nam fermentum nunc quis nulla imperdiet, iaculis tempor massa mollis. Integer molestie justo eu orci tempor, nec iaculis sem maximus. Duis a sollicitudin purus. Aliquam erat volutpat. Ut eu rhoncus diam. Cras malesuada tempor ultricies. Maecenas tincidunt sapien at rutrum laoreet. Morbi viverra non dui sit amet tincidunt. Pellentesque quis elit massa." wrapText="true" styleClass="body-text">
