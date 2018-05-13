@@ -106,14 +106,14 @@ public class ParallaxPaneSkin extends SkinBase<ParallaxPane> {
         scrollPane.setVvalue(newScrollValue);
     }
 
-    private void updateNodeSize() {
+    private void updateNodeSize(double contentWidth, double contentHeight) {
         int verticalSizeDifference = getSkinnable().getVerticalSizeDifference();
         double scrollPaneHeight = scrollPane.getHeight();
         double currentContentHeight = getSkinnable().getContent().getBoundsInLocal().getHeight();
         double expectedContentHeight = scrollPaneHeight + verticalSizeDifference;
 
         if (currentContentHeight != expectedContentHeight) {
-            Utils.changeNodeSize(getSkinnable().getContent(), getSkinnable().getWidth(), expectedContentHeight);
+            Utils.changeNodeSize(getSkinnable().getContent(), contentWidth, expectedContentHeight);
         }
     }
 
@@ -121,7 +121,7 @@ public class ParallaxPaneSkin extends SkinBase<ParallaxPane> {
     protected void layoutChildren(double contentX, double contentY, double contentWidth, double contentHeight) {
         scrollPane.resizeRelocate(contentX, contentY, contentWidth, contentHeight);
         if (lastContentWidth != contentWidth || lastContentHeight != contentHeight) {
-            updateNodeSize();
+            updateNodeSize(contentWidth, contentHeight);
             lastContentWidth = contentWidth;
             lastContentHeight = contentHeight;
         }
