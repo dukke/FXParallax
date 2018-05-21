@@ -36,7 +36,7 @@
 <?import javafx.scene.media.MediaPlayer?>
 <?import javafx.scene.media.Media?>
 <?import javafx.scene.media.MediaView?>
-<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" maxWidth="1280">
     <center>
         <VBox styleClass="main-container">
             <ParallaxPane styleClass="first-image">
@@ -77,7 +77,7 @@
                     </MediaView>
                 </content>
             </ParallaxPane>
-            <VBox styleClass="text-container">
+            <VBox styleClass="text-container, last">
                 <Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultrices varius tincidunt. Phasellus rhoncus imperdiet neque, eget facilisis erat vestibulum ac. Nam fermentum nunc quis nulla imperdiet, iaculis tempor massa mollis. Integer molestie justo eu orci tempor, nec iaculis sem maximus. Duis a sollicitudin purus. Aliquam erat volutpat. Ut eu rhoncus diam. Cras malesuada tempor ultricies. Maecenas tincidunt sapien at rutrum laoreet. Morbi viverra non dui sit amet tincidunt. Pellentesque quis elit massa." wrapText="true" styleClass="body-text">
                 </Label>
                 <Label text="Praesent eu ante sed ex bibendum condimentum et nec magna. Maecenas at laoreet urna, id euismod lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc sollicitudin faucibus commodo. Aliquam vel consectetur nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam sit amet massa nec dolor placerat cursus eu elementum justo. Vivamus pulvinar ipsum eu mauris cursus facilisis. Maecenas et nisi ac elit efficitur tincidunt ac at massa. Mauris ut lectus non orci dictum luctus. Nulla nulla sem, dignissim et nulla et, tempor facilisis orci. Pellentesque urna erat, interdum in bibendum non, varius quis augue. Nunc vitae cursus odio." wrapText="true" styleClass="body-text">

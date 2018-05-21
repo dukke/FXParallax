@@ -69,11 +69,13 @@ public class ParallaxPane extends Control {
      * Properties                                                              *
      *                                                                         *
      **************************************************************************/
-
-    private final ObjectProperty<Node> content = new SimpleObjectProperty<>();
+    public final ObjectProperty<Node> contentProperty() { return content; }
     public final void setContent(Node content) { this.content.set(content); }
     public final Node getContent() { return content.get(); }
-    public final ObjectProperty<Node> contentProperty() { return content; }
+
+    private final ObjectProperty<Node> content = new SimpleObjectProperty<>();
+
+
 
     private final IntegerProperty verticalSizeDifference = new SimpleIntegerProperty(100);
     public final void setVerticalSizeDifference(int value) { verticalSizeDifference.set(value); }

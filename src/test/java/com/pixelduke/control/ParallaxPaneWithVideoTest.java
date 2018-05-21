@@ -52,9 +52,12 @@ public class ParallaxPaneWithVideoTest  extends Application {
         Scene scene = new Scene(scrollPane);
 
         scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneTest.css").toExternalForm());
+        scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithVideoTest.css").toExternalForm());
 
 //        ScenicView.show(scene);
 
+        primaryStage.setMaxWidth(1280);
+        primaryStage.setMaxHeight(720);
         primaryStage.getIcons().add(new Image(ParallaxPaneWithImageTest.class.getResource("Pixel Duke icon_16.png").toExternalForm()));
         primaryStage.setTitle("ParallaxPane Demo with Video in AnimatedScrollPane");
         primaryStage.setScene(scene);

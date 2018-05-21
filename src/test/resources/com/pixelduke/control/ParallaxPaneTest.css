@@ -51,10 +51,18 @@
 }
 
 .parallax-pane {
-    -fx-padding: 25px 0 25px 0;
+    -fx-padding: 50px 0 50px 0;
     -fx-pref-height: 600px;
 }
 
+.parallax-pane.second-image {
+    -fx-pref-height: 800px;
+}
+
 .parallax-pane.first-image {
-    -fx-padding: 0px 0 10px 0;
+    -fx-padding: 0px 0 30px 0;
+}
+
+.text-container.last {
+    -fx-padding: 0 0 25px 0;
 }
