@@ -8,7 +8,7 @@ For more information check [https://www.pixelduke.com/fxparallax](https://www.pi
 
 ## Issues and Contributions
 Issues can be reported to the Issue tracker. If you're not sponsoring or fixing them yourself,
-please be patiente as I can only work on them during my spare time and according to priorities.
+please be patient as I can only work on them during my spare time and according to priorities.
 We welcome contributions, they can be submitted via Pull requests.
 
 ### Pull Requests (PR)
@@ -23,3 +23,10 @@ might not be approved because for instance might be outside the intended scope o
 Please send me pictures of your application that is using FXParallax, this is for me
 to know how users are effectively using it and make adjustments accordingly and if you
 allow it, to showcase example uses.
+
+# About The Author
+I hope you don't mind just a bit of publicity. I'm a [JavaFX and Swing Freelancer and Consultant](https://www.pixelduke.com),
+but more generally can be described as a Front End Freelancer and Consultant since I also have experience in web technologies,
+building web apps, etc, and have experience in User Interface Design and User Experience. If you need professional assistance 
+feel free to [contact me](https://www.pixelduke.com/contact).  
+Still this is, and will remain being, a free and open source library, so feel free to use it, royalty free, in your projects commercial or not. 
