@@ -5,7 +5,7 @@ to where it’s used.
 
 Example of one control in FXParallax called ParallaxListView:
 
-![ParallaxListView gif picture](./ParallaxListView.gif)
+![ParallaxListView gif picture](./ParallaxListView3.gif)
 
 ## Documentation
 For more information check [https://www.pixelduke.com/fxparallax](https://www.pixelduke.com/fxparallax).
