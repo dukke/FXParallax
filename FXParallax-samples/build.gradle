@@ -1,0 +1,29 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing', 'javafx.web', 'javafx.graphics' ]
+}
+
+
+//mainClassName = 'com.pixelduke.samples.control.HorizontalParallaxListViewTest'
+//mainClassName = 'com.pixelduke.samples.control.ParallaxListViewTest'
+//mainClassName = 'com.pixelduke.samples.control.ParallaxPaneWithImageTest'
+//mainClassName = 'com.pixelduke.samples.control.ParallaxPaneWithImageWithAnimatedScrollPaneTest'
+mainClassName = 'com.pixelduke.samples.control.ParallaxPaneWithVideoTest'
+
+
+
+
+dependencies {
+    compile project(':FXParallax')
+
+    implementation files('lib/scenicview.jar')
+}
+
+repositories {
+    mavenCentral()
+}

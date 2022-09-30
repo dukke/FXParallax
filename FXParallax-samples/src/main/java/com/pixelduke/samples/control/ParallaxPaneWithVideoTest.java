@@ -25,8 +25,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pixelduke.control;
+package com.pixelduke.samples.control;
 
+import com.pixelduke.control.AnimatedScrollPane;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -37,26 +38,29 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ParallaxPaneWithImageTest extends Application {
+public class ParallaxPaneWithVideoTest  extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithImageTest.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithVideoTest.fxml"));
 
         BorderPane rootPane = fxmlLoader.load();
-        ScrollPane scrollPane = new ScrollPane(rootPane);
+        AnimatedScrollPane scrollPane = new AnimatedScrollPane(rootPane);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
         Scene scene = new Scene(scrollPane);
 
         scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneTest.css").toExternalForm());
+        scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithVideoTest.css").toExternalForm());
 
 //        ScenicView.show(scene);
 
+        primaryStage.setMaxWidth(1280);
+        primaryStage.setMaxHeight(720);
         primaryStage.getIcons().add(new Image(ParallaxPaneWithImageTest.class.getResource("Pixel Duke icon_16.png").toExternalForm()));
-        primaryStage.setTitle("ParallaxPane Demo");
+        primaryStage.setTitle("ParallaxPane Demo with Video in AnimatedScrollPane");
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -67,4 +71,5 @@ public class ParallaxPaneWithImageTest extends Application {
         launch(args);
     }
 }
+
 

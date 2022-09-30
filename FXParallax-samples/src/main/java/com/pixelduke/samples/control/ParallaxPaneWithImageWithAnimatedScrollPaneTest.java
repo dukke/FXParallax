@@ -25,45 +25,48 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pixelduke.control;
+package com.pixelduke.samples.control;
 
+import com.pixelduke.control.AnimatedScrollPane;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class ParallaxListViewTest extends Application {
+import java.io.IOException;
+
+public class ParallaxPaneWithImageWithAnimatedScrollPaneTest extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
-        BorderPane rootNode = new BorderPane();
+    public void start(Stage primaryStage) throws IOException {
 
-        ParallaxListView parallaxListView = new ParallaxListView<>(FXCollections.observableArrayList("Portugal", "Spain", "United States",
-                "Israel", "South Africa", "New Zealand", "Turkey", "Denmark", "Sweden", "Angola", "Canada", "Argentina",
-                "Brazil", "Uruguai", "South Korea", "England", "Ireland", "Scotland", "Wales", "Australia", "Peru", "Palestine", "Portugal", "Spain", "United States",
-                "Israel", "South Africa", "New Zealand", "Turkey", "Denmark", "Sweden", "Angola", "Canada", "Argentina",
-                "Brazil", "Uruguai", "South Korea", "England", "Ireland", "Scotland", "Wales", "Australia", "Peru", "Palestine", "Portugal", "Spain", "United States",
-                "Israel", "South Africa", "New Zealand", "Turkey", "Denmark", "Sweden", "Angola", "Canada", "Argentina",
-                "Brazil", "Uruguai", "South Korea", "England"));
-        ImageView image = new ImageView(new Image(ParallaxListViewTest.class.getResource("bay-landscape-wallpaper-725x483.jpg").toExternalForm()));
-        parallaxListView.setBackgroundImage(image);
+        FXMLLoader fxmlLoader = new FXMLLoader(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneWithImageTest.fxml"));
 
-        parallaxListView.setPrefWidth(993);
+        BorderPane rootPane = fxmlLoader.load();
+        AnimatedScrollPane scrollPane = new AnimatedScrollPane(rootPane);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        rootNode.setCenter(parallaxListView);
+        Scene scene = new Scene(scrollPane);
 
-        Scene scene = new Scene(rootNode);
+        scene.getStylesheets().add(ParallaxPaneWithImageTest.class.getResource("ParallaxPaneTest.css").toExternalForm());
 
 //        ScenicView.show(scene);
 
+        primaryStage.getIcons().add(new Image(ParallaxPaneWithImageTest.class.getResource("Pixel Duke icon_16.png").toExternalForm()));
+        primaryStage.setTitle("ParallaxPane Demo with AnimatedScrollPane");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        primaryStage.setMaximized(true);
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 }
+
+

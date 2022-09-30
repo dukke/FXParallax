@@ -28,13 +28,13 @@
 package impl.com.pixelduke.skin;
 
 import com.pixelduke.control.ParallaxListView;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import javafx.animation.*;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
+import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
 import javafx.util.Duration;

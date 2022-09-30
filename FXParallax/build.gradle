@@ -1,0 +1,86 @@
+plugins {
+    id "com.jfrog.bintray" version "1.7.3"
+    id "java-library"
+    id "maven-publish"
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+
+group = 'com.pixelduke'
+version = '2.0.0'
+def versionDescription = 'FXParallax First release'
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls' , 'javafx.media']
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes( 'Implementation-Title': project.name,
+                'Implementation-Version': project.version)
+    }
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+javadoc {
+    options.addStringOption('javafx', '-quiet')
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+artifacts {
+    archives sourceJar
+    archives javadocJar
+}
+
+/* Publishing */
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    pkg {
+        repo = 'maven'
+        name = project.name
+        //userOrg = 'dukke'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/dukke/FXParallax.git'
+        publications = ['mavenJava']
+        websiteUrl = 'https://www.pixelduke.com/fxparallax'
+        issueTrackerUrl = 'https://github.com/dukke/FXParallax/issues'
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+            desc = versionDescription // Version description
+            vcsTag = project.version
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourceJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+        }
+    }
+}
+
